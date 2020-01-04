@@ -1,0 +1,259 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans';
+}
+
+.Container {
+    width: 100%;
+    height: 100vh;
+}
+
+.ScrollContainer {
+    width: 100%;
+    height: 85vh;
+    background: #efeeee;
+    overflow-y: auto;
+    margin-top: 13.3vh;
+    position: fixed;
+}
+
+@media only screen and (min-width: 800px) {
+.Holder {
+    width: 30%;
+    height: 50%;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    border: solid thin #d2d2d2;
+    background: white;
+}
+}
+
+@media only screen and (max-width: 800px) {
+.Holder {
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    border: solid thin #d2d2d2;
+    background: white;
+}
+    }
+
+.ImageBox {
+    width: 100%;
+    height: 70%;
+    background: rgb(204, 243, 204);
+    background-position: center;
+    border-bottom: thin solid gray;
+    border-top: thin solid gray;
+}
+
+.Toolbar {
+    width: 100%;
+    display: flex;
+    background: white;
+    height: 25px;
+}
+
+.CommentBar,
+.ProfileBar {
+    width: 100%;
+    height: 10%;
+    font-size: .8em;
+}
+
+@media only screen and (max-width: 800px) {
+.CommentBar{
+    font-size: .6em;
+}
+}
+
+@media only screen and (min-width: 800px) {
+.CommentBar{
+    margin: 4px;
+    }
+}
+
+.ProfileBar {
+    padding: 8px;
+}
+
+.Liked,
+.Like {
+    width: 10px;
+    height: 10px;
+    background: white;
+}
+
+.Liked {
+    background: red;
+}
+
+.Commnet {
+    width: 10px;
+    height: 10px;
+    background: white;
+}
+
+.Comments{
+    width: 100%;
+    height: 84vh;
+    z-index: 1;
+    overflow-y: scroll;
+    background: #f7f7f7;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.Profile {
+    position: relative;
+    width: 100%;
+    height: 95vh;
+    z-index: 1;
+    overflow-y: scroll;
+    background: #f7f7f7;
+    top: 0;
+    left: 0;
+}
+
+.Close {
+    direction: rtl;
+    position: fixed;
+    width: 98%;
+    z-index: 1;
+    top: 1vh;
+    left: -1vw;
+    cursor: pointer;
+}
+
+.NavigationBar {
+    width: 100vw;
+    height: 5vh;
+    bottom: 0;
+    position: fixed;
+    background: whitesmoke;
+    display: flex;
+    z-index: 2;
+    border-top: thin #e0e5ea solid;
+}
+
+.StoryBar {
+    width: 100%;
+    height: 10vh;
+    background: whitesmoke;
+    position: fixed;
+    border-bottom: thin #e0e5ea solid;
+    top: 3.2vh;
+}
+
+.NavBar {
+    background: #fdfcfc;
+    border-bottom: thin #e0e5ea solid;
+    height: 3vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    margin-left: 4px;
+}
+
+.loadngHolder {
+    color: #777;
+    text-align: center;
+    font-family: "Gill sans", sans-serif;
+    height: 100vh;
+    vertical-align: middle;
+}
+
+h1.loader {
+    margin: 1em 0;
+    border-bottom: 1px dashed;
+    padding-bottom: 1em;
+    font-weight: lighter;
+}
+
+p.loader {
+    font-style: italic;
+}
+
+.loader {
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    margin: 0 auto 1em;
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .CommentInput{
+    position: fixed;
+    width: 100%;
+    top: 84vh;
+    background: #f7f7f7;
+  }
+
+@media only screen and (min-width: 800px) {
+    .ImageBoxProfile{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .ImageBoxProfile{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .ImagePost{
+        width: 400px;
+        height: 400px;
+    }
+}
+      
+@media only screen and (max-width: 800px) {
+    .ImagePost{
+         width: 200px;
+        height: 200px;
+    }
+}
+
+.ProfileRibbon{
+    width: 100%;
+    height: 5vh;
+    background: blueviolet;
+    margin-bottom: 32px;
+}
+
+fieldset{
+    border-color: ivory;
+    padding: 32px;
+    background: whitesmoke;
+}
+
+@media only screen and (min-width: 800px) {
+    .ProfileName{
+        margin: 3px;
+        font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+    .ProfileName{
+        margin: 6px;
+        font-size: 0.8em;
+    }
+}
