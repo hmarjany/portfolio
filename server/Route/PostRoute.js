@@ -96,57 +96,66 @@ router.post('/post/like', (req, res, next) => {
   let like = req.query.like;
   let postId = req.query.postId;
 
-  Post.findByIdAndUpdate(postId, { $push: { like: { liked: like, userId: userId } } }).
+  Post.updateOne({ '_id': postId, 'like.userId': { $ne: userId } }, { $addToSet: { like: { liked: like, userId: userId } } }).
     then((result) => {
+      console.log(result);
+      console.log('like done');
       res.send(result);
-      next(result);
+      if (result.nModified === 0) {
+        Post.updateOne({ '_id': postId, 'like.userId': userId }, { $set: { 'like.$.liked': like } }).
+          then((response) => {
+            console.log(response);
+            console.log('like done 01');
+          })
+      }
     }).
     catch((err) => {
       console.log(err);
+      res.send(err);
       next(err);
     });
 })
 
 router.get('/post/getLikes', (req, res, next) => {
-  
+
   if (req.query.postId === undefined) {
     res.send(null);
     return next();
   }
 
-  if (req.query.userId === undefined) {
-    res.send(null);
-    return next();
-  }
+
 
   let postId = req.query.postId;
-  let userId = req.query.userId;
-  var response = {count:0,like:null};
-
-  Post.find({
-    _id: postId,
-    
-  },
-    'like'
-  ).select('-_id like.liked').find({
-    like:{$elemMatch:{liked:true}}
-  }).then((result) => {
-      console.log('find likes ', result);
-      Post.find({
-        _id:postId,
-        'like.userId':userId
-      }).select('-_id like.liked')
-      .then((doc) => {
-          console.log('user id likes ', doc);
-          response.like = doc[0].like[doc[0].like.length-1];
+  var response = { count: 0, like: false };
+  console.log('start get likes');
+  Post.find({ '_id': postId, 'like.liked': true }, { like: { $elemMatch: { liked: true } } })
+    .then((result) => {
+      if (req.query.userId != undefined) {
+        let userId = req.query.userId;
+        Post.find({ '_id': postId, 'like.userId': userId }, { like: { $elemMatch: { userId: userId } } })
+          .then((doc) => {
+            if (doc.length > 0) {
+              if (doc[0].like[0].liked === true) {
+                response.like = true;
+              }
+            }
+            if (result.length > 0) {
+              response.count = result[0].like.length;
+            }
+            res.send(JSON.stringify(response));
+            next(result);
+          }).catch((err) => {
+            console.log(err);
+            next(err);
+          });
+      } else {
+        if (result.length > 0) {
+          console.log('find likes ', result[0].like.length);
           response.count = result[0].like.length;
-          res.send(JSON.stringify(response));
-          next(JSON.stringify(response));
-        }).
-        catch((err) => {
-          console.log(err);
-          next(err);
-        })
+        }
+        res.send(JSON.stringify(response));
+        next(result);
+      }
     }).
     catch((err) => {
       console.log(err);

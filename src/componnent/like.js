@@ -28,12 +28,11 @@ export default function Like(props) {
         else {
             await setIsLike(true);
         }
-        console.log(isLike)
         await axios.post('http://localhost:3001/post/like', null, {
             params: {
                 postId: props.Post._id,
                 userId: props.UserId,
-                like: isLike
+                like: !isLike
             }
         }).
             then(() => {
