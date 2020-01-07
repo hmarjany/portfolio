@@ -6,6 +6,7 @@ import { FaRegCommentAlt } from 'react-icons/fa';
 import { FaUserCircle } from 'react-icons/fa';
 import { FaCommentMedical } from 'react-icons/fa';
 import { IconContext } from "react-icons";
+import config from "./../auth_config.json";
 
 export default function Comment(props) {
     const [showComment, setShowComment] = useState(false);
@@ -32,7 +33,7 @@ export default function Comment(props) {
 
     const getComments = () => {
         let postId = props.Post._id;
-        axios.get('http://localhost:3001/post/getComments', {
+        axios.get(config.server+'/post/getComments', {
             params: {
                 postId: postId
             }
@@ -46,7 +47,7 @@ export default function Comment(props) {
     const postComment = async () => {
         
         let postId = props.Post._id;
-        axios.post('http://localhost:3001/post/sendComment', null, {
+        axios.post(config.server+'/post/sendComment', null, {
             params: {
                 userId: userId,
                 comment: comment,

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ImageUpload from './imageUpload';
 import axios from 'axios';
-import { UserContext } from '../App';
+import config from "./../auth_config.json";
 
 export default function Profile(props) {
     const [posts, setPosts] = useState(null);
@@ -9,7 +9,7 @@ export default function Profile(props) {
     useEffect(() => {
         console.log(props.UserId);
         try {
-            axios.get(`http://localhost:3001/post/getList`, {
+            axios.get(`${config.server}/post/getList`, {
                 params: {
                     email: props.UserId
                 }

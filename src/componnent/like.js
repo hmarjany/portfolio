@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { IconContext } from 'react-icons';
+import config from "./../auth_config.json";
 
 export default function Like(props) {
 
@@ -10,7 +11,7 @@ export default function Like(props) {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/post/getLikes', {
+        axios.get(config.server+'/post/getLikes', {
             params: {
                 postId: props.Post._id,
                 userId: props.UserId
@@ -28,7 +29,7 @@ export default function Like(props) {
         else {
             await setIsLike(true);
         }
-        await axios.post('http://localhost:3001/post/like', null, {
+        await axios.post(config.server+'/post/like', null, {
             params: {
                 postId: props.Post._id,
                 userId: props.UserId,

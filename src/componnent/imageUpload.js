@@ -4,6 +4,7 @@ import { UserContext } from '../App';
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
 import { IconContext } from 'react-icons';
+import config from "./../auth_config.json";
 
 export default function ImageUpload(props) {
     const [fileInput, setFileInput] = useState(React.createRef());
@@ -41,7 +42,7 @@ export default function ImageUpload(props) {
         alert(caption);
         const data = new FormData();
         data.append('file', file, file.name);
-        axios.post(`http://localhost:3001/post/uploadImage`, data, {
+        axios.post(`${config.server}/post/uploadImage`, data, {
             params: {
                 caption,
                 userId

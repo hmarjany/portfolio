@@ -5,13 +5,14 @@ import axios from "axios";
 import { FaSignOutAlt } from "react-icons/fa";
 import { FaSignInAlt } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import config from "./../auth_config.json";
 
 export default function NavBar(props) {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   useEffect(() => {
     var getUserAndUpdateUser = async () => {
       if (isAuthenticated) {
-        await axios.get(`http://localhost:3001/user/getAndUpdateUser/`, {
+        await axios.get(`${config.server}/user/getAndUpdateUser/`, {
           params: {
             userId: props.UserId
           }
