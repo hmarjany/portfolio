@@ -39,7 +39,7 @@ export default function ImageUpload(props) {
            setCaption('No caption!');
         }
 
-        alert(caption);
+        
         const data = new FormData();
         data.append('file', file, file.name);
         axios.post(`${config.server}/post/uploadImage`, data, {
