@@ -53,4 +53,4 @@ app.get("/api/external", checkJwt, (req, res) => {
 
 app.use(postRoute);
 app.use(userRoute);
-app.listen(3001, () => console.log('API listening on 3001'));
+app.listen(process.env.PORT, () => console.log('API listening on 3001'));
