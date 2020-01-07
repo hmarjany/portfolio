@@ -22,9 +22,10 @@ app.use(
 
 var mongoPassword = 'SD@123456';  
 app.use(express.static(__dirname + '/public/files/temp/'));
+var config = JSON.parse(process.env.APP_CONFIG);
  
-mongoose.connect("mongodb://" + "9a1798554423b52f03bf4889cd5b579e" + ":" + encodeURIComponent(mongoPassword) + "@" + 
-"mongodb:27017/9a1798554423b52f03bf4889cd5b579e", { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect("mongodb://" + config.mongo.user + ":" + encodeURIComponent(mongoPassword) + "@" + 
+config.mongo.hostString, { useUnifiedTopology: true, useNewUrlParser: true });
 
 const authConfig = {
     domain: "dev-v9n23u7w.auth0.com",
