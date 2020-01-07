@@ -20,12 +20,16 @@ app.use(
     })
 );
 
+var mongoPassword = 'SD@123456';  
 app.use(express.static(__dirname + '/public/files/temp/'));
-mongoose.connect('mongodb://127.0.0.1:27017/portfolio', { useUnifiedTopology: true, useNewUrlParser: true });
+var config = JSON.parse(process.env.APP_CONFIG);
+ 
+mongoose.connect("mongodb://" + "9a1798554423b52f03bf4889cd5b579e" + ":" + encodeURIComponent(mongoPassword) + "@" + 
+"mongodb:27017/9a1798554423b52f03bf4889cd5b579e", { useUnifiedTopology: true, useNewUrlParser: true });
 
 const authConfig = {
     domain: "dev-v9n23u7w.auth0.com",
-    audience: "http://api.localhost:3000/"
+    audience: "https://marjani158.osc-fr1.scalingo.io"
 };
 
 const checkJwt = jwt({
