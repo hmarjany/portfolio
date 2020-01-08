@@ -2,5 +2,5 @@
     "domain": "dev-v9n23u7w.auth0.com",
     "clientId": "QdZcE4UvgvauNWz3G7ApLaxfLJb10vPb",
     
-    "server":"http://marjani.eu-4.evennode.com"
+    "server":"https://cors-anywhere.herokuapp.com/http://marjani.eu-4.evennode.com"
 }
