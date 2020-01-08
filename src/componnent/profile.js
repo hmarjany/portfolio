@@ -19,7 +19,7 @@ export default function Profile(props) {
                     var renderPosts = (<div className='gallery'>
                         <ul style={{ listStyleType: 'none', overflow: 'hidden' }}>
                             {result.data.map((post, index) => <li style={{ margin: '10px', float: 'left' }} key={index}>
-                                <div ratio="3/4" className='ImageBox ImageBoxProfile' style={{ backgroundImage: `url(http://localhost:3001/${post.image})`, backgroundSize: 'cover' }}>
+                                <div ratio="3/4" className='ImageBox ImageBoxProfile' style={{ backgroundImage: `url(http://www.marjani.eu-4.evennode.com/${post.image})`, backgroundSize: 'cover' }}>
                                 </div>
                                 <div>{post.caption}</div>
                             </li>
