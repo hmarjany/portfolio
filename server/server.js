@@ -7,10 +7,10 @@ var userRoute = require('./Route/UserRoute');
 var morgan = require('morgan')
 var app = express();
 app.use(morgan('combined'));
-var cors = require('cors');
+//var cors = require('cors');
 var fileUpload = require('express-fileupload');
 
-app.use(cors());
+//app.use(cors());
 app.use(
     fileUpload({
         useTempFiles: true,
