@@ -4,7 +4,10 @@ import config from "./../auth_config.json";
 export default function ImageBox(props) {
 
     return (
-        <div ratio="3/4" className='ImageBox' style={{ backgroundImage: `url(${config.server}/${props.ImagePath})`, backgroundSize: 'cover' }}>
+        <div ratio="3/4" className='ImageBox' style={{ backgroundImage: `url(${config.server}/${props.ImagePath}
+        ,headers: {
+            Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept
+          })`, backgroundSize: 'cover' }}>
 
         </div>
     );
