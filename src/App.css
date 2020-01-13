@@ -276,37 +276,26 @@ fieldset{
     left: -999em;
   }
   .radialHolder {
-    top: 0;
+      position: relative;
+    top: 24%;
     right: 0;
     bottom: 0;
     left: 0;
     margin: auto;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .progress {
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg);
   }
+  .progress__meter,
   .progress__value {
-    stroke-dasharray: 339.292;
-    stroke-dashoffset: 339.292;
-    -webkit-animation: progress 2s infinite alternate;
-    animation: progress 2s infinite alternate;
+    fill: none;
   }
-  @-webkit-keyframes progress {
-    from {
-      stroke-dashoffset: 339.292;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
+  .progress__value {
+    stroke: #FFEB3B;
+    stroke-linecap: round;
   }
-  @keyframes progress {
-    from {
-      stroke-dashoffset: 339.292;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  

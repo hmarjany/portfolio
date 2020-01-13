@@ -10,6 +10,16 @@ export default function ImageBox(props) {
         getImage();
     }, [url])
 
+    var RADIUS = 54;
+    var CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+    
+    var progress = (value)=> {
+        var progress = value / 100;
+        var dashoffset = CIRCUMFERENCE * (1 - progress);
+        console.log('progress:', value + '%', '|', 'offset:', dashoffset)
+        return dashoffset;
+    }
+
     var getImage = async () => {
         axios.get(`${config.server}/${props.ImagePath}`,
             {
@@ -28,13 +38,12 @@ export default function ImageBox(props) {
     return (
 
         <div ratio="3/4" className='ImageBox' style={{ backgroundImage: 'url(' + url + ')', backgroundSize: 'cover' }}>
-            {/* <div className="radialHolder">
+            <div className="radialHolder" style={{display:percentCompelet>=100?'none':null}}>
                 <svg className="progress" width="120" height="120" viewBox="0 0 120 120">
-                    <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="4" />
-                    <circle className="progress__value" cx="60" cy="60" r="54" fill="none" stroke="#f77a52" strokeWidth="3" />
+                    <circle className="progress__meter" cx="60" cy="60" r="54" strokeWidth="4" />
+		            <circle style={{strokeDashoffset:progress(percentCompelet), strokeDasharray:CIRCUMFERENCE}} className="progress__value" cx="60" cy="60" r="54" strokeWidth="3" />
                 </svg>
             </div>
-            {percentCompelet} */}
         </div>
     );
 }
