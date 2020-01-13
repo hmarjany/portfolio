@@ -4,23 +4,37 @@ import axios from 'axios';
 
 export default function ImageBox(props) {
 
-    const[url,setUrl]=useState('');
+    const [url, setUrl] = useState('');
+    const [percentCompelet, setPercentCompelet] = useState(0);
     useEffect(() => {
         getImage();
-    },[url])
+    }, [url])
 
-    var getImage = async ()=>{
+    var getImage = async () => {
         axios.get(`${config.server}/${props.ImagePath}`,
-            { responseType: 'arraybuffer',headers: { 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'}})
+            {
+                responseType: 'arraybuffer',
+                headers: { 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept' },
+                onDownloadProgress: (progressEvent) => {
+                    var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    setPercentCompelet(percentCompleted);
+                }
+            })
             .then((res) => {
-                var url = '"data:image/jpg;base64,'+Buffer.from(res.data, 'binary').toString('base64')+'"';
+                var url = '"data:image/jpg;base64,' + Buffer.from(res.data, 'binary').toString('base64') + '"';
                 setUrl(url);
             });
     }
     return (
-        
-        <div ratio="3/4" className='ImageBox' style={{ backgroundImage:'url('+url+')', backgroundSize: 'cover' }}>
 
+        <div ratio="3/4" className='ImageBox' style={{ backgroundImage: 'url(' + url + ')', backgroundSize: 'cover' }}>
+            {/* <div className="radialHolder">
+                <svg className="progress" width="120" height="120" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="4" />
+                    <circle className="progress__value" cx="60" cy="60" r="54" fill="none" stroke="#f77a52" strokeWidth="3" />
+                </svg>
+            </div>
+            {percentCompelet} */}
         </div>
     );
 }
